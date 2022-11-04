@@ -15,6 +15,7 @@ import javax.swing.JProgressBar;
 import javax.swing.Timer;
 
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Color;
 
 public class CargaInicial extends JFrame {
@@ -41,9 +42,15 @@ public class CargaInicial extends JFrame {
 		    		progressBar.setValue(progressBar.getValue()+1);
 		    		//if (progressBar.getValue() == 80){
 		    		//}
-				}//else if(progressBar.getValue() == progressBar.getMaximum()){
-					//panelCarga.setVisible(false);
-				//}
+				}else if(progressBar.getValue() == progressBar.getMaximum()){
+					panelCarga.setVisible(false);
+					mainPanel mainJp = new mainPanel();
+					mainJp.setVisible(true);
+					setContentPane(mainJp);
+					setBounds(0, 0, 1920, 1080);
+					//setVisible(true);
+					//setUndecorated(true);
+				}
 			    
 		     }
 		});
