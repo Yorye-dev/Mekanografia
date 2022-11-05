@@ -20,12 +20,7 @@ import java.awt.Color;
 
 public class CargaInicial extends JFrame {
 	
-
 	private JPanel panelCarga;
-
-	/**
-	 * Create the frame.
-	 */
 	
 	public CargaInicial() {
 		
@@ -43,16 +38,22 @@ public class CargaInicial extends JFrame {
 		    		//if (progressBar.getValue() == 80){
 		    		//}
 				}else if(progressBar.getValue() == progressBar.getMaximum()){
+					
 					panelCarga.setVisible(false);
 					mainPanel mainJp = new mainPanel();
-					mainJp.setVisible(true);
+					mainJp.setVisible(true);  //Panel principal, donde se va cargar todo el programa
+					setVisible(false);
+					dispose();
+					setUndecorated(false);
+					setVisible(true);
+					//setUndecorated(false);
 					setContentPane(mainJp);
-					setBounds(0, 0, 1920, 1080);
+					//setBounds(0, 0);
 					//setVisible(true);
-					//setUndecorated(true);
 				}
 			    
 		     }
+			
 		});
 		
 		
@@ -61,6 +62,7 @@ public class CargaInicial extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true); //No se meustra el marco de Jframe
 		setBounds(100, 100, 500, 300);
+		setTitle("Mecanografia");
 		
 		//Definicion del Jpanel 
 		panelCarga.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,24 +82,21 @@ public class CargaInicial extends JFrame {
 		progressBar.setStringPainted(true);
 		progressBar.setMaximum(100);
 		progressBar.setBounds(0, 283, 500, 17);
+		
 		timer.start();
+		
+		while (progressBar.getValue() == 100) {
+			timer.stop();
+		}
+		
+		
+		
+		
 		
 	
 		//eventos de tiempo
 		panelCarga.add(progressBar);
 		panelCarga.add(background);
-		
-		//JButton btnNewButton = new JButton("New button");
-		//btnNewButton.addActionListener(new ActionListener() {
-			/*public void actionPerformed(ActionEvent e) {
-				timer.start();
-			}
-		});
-		btnNewButton.setBounds(156, 135, 89, 23);
-		panelCarga.add(btnNewButton);*/
-		
-		
-		
 		
 		
 	}
