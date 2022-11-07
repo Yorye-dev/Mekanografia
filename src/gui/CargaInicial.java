@@ -19,6 +19,7 @@ import java.awt.Frame;
 import java.awt.Color;
 
 public class CargaInicial extends JFrame {
+	Timer timer;
 	
 	private JPanel panelCarga;
 	
@@ -30,7 +31,7 @@ public class CargaInicial extends JFrame {
 		JLabel background = null;
 		background = new JLabel("", imgBack, JLabel.CENTER);
 		JProgressBar progressBar = new JProgressBar();
-		Timer timer = new Timer (60, new ActionListener() {
+		timer = new Timer (60, new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 		    {
 		    	if (progressBar.getValue() < progressBar.getMaximum()) {
@@ -42,27 +43,21 @@ public class CargaInicial extends JFrame {
 					panelCarga.setVisible(false);
 					mainPanel mainJp = new mainPanel();
 					mainJp.setVisible(true);  //Panel principal, donde se va cargar todo el programa
-					setVisible(false);
-					dispose();
-					setUndecorated(false);
+					dispose(); //Se limpia el Jframe
+					setUndecorated(false); 
 					setVisible(true);
-					//setUndecorated(false);
 					setContentPane(mainJp);
-					//setBounds(0, 0);
-					//setVisible(true);
+					timer.stop();
 				}
-			    
 		     }
-			
 		});
-		
 		
 		//Definición del Jframe (el tamaño "500*300", icono y centrado)
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\Mekanografia.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true); //No se meustra el marco de Jframe
 		setBounds(100, 100, 500, 300);
-		setTitle("Mecanografia");
+		setTitle("Mekanografia");
 		
 		//Definicion del Jpanel 
 		panelCarga.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -83,21 +78,10 @@ public class CargaInicial extends JFrame {
 		progressBar.setMaximum(100);
 		progressBar.setBounds(0, 283, 500, 17);
 		
-		timer.start();
-		
-		while (progressBar.getValue() == 100) {
-			timer.stop();
-		}
-		
-		
-		
-		
-		
-	
-		//eventos de tiempo
 		panelCarga.add(progressBar);
 		panelCarga.add(background);
 		
-		
+		//inicio del contador
+		timer.start();
 	}
 }

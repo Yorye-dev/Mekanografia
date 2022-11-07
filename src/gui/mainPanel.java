@@ -2,6 +2,9 @@ package gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import principal.Principal;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -25,6 +28,7 @@ public class mainPanel extends JPanel {
 		
 		JPanel panel_3 = new JPanel();
 		add(panel_3, BorderLayout.CENTER);
+		
 
 	}
 
