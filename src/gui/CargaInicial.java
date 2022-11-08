@@ -14,9 +14,32 @@ import java.awt.event.ActionListener;
 import javax.swing.JProgressBar;
 import javax.swing.Timer;
 
+
+/*
+ * Jaime
+ * 
+ * Calse accederFile(){
+ * 
+ * private ArrayList<Usuario> listaUsuario;
+ * 
+ * public accederFile() private ArrayList<Usuario> listaUsuario){
+ * 	this.listaUsuarios = listaUsuarios;
+ * }
+ * 
+ * accederFicheros(){
+ * 
+ * listaUsuarios.add(neew Usuario (String.split(";")[0], String.split(";")[1], String.split(";")[2]));
+ * }
+ * 
+ * }
+ * 
+ * */
+
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Color;
+
+import logic.Ficheros;
 
 public class CargaInicial extends JFrame {
 	Timer timer;
@@ -36,17 +59,21 @@ public class CargaInicial extends JFrame {
 		    {
 		    	if (progressBar.getValue() < progressBar.getMaximum()) {
 		    		progressBar.setValue(progressBar.getValue()+1);
-		    		//if (progressBar.getValue() == 80){
-		    		//}
+		    		if (progressBar.getValue() == 80){
+		    			if (Ficheros.comprobarFicheros(Ficheros.estadisticasFile, Ficheros.textoFile, Ficheros.usuariosFile) == false) {
+		    				System.exit(ABORT);
+		    			}
+		    		}
 				}else if(progressBar.getValue() == progressBar.getMaximum()){
 					
 					panelCarga.setVisible(false);
-					mainPanel mainJp = new mainPanel();
-					mainJp.setVisible(true);  //Panel principal, donde se va cargar todo el programa
+					Login login = new Login();
+					login.setVisible(true);  //Panel principal, donde se va cargar todo el programa
 					dispose(); //Se limpia el Jframe
 					setUndecorated(false); 
 					setVisible(true);
-					setContentPane(mainJp);
+					setContentPane(login);
+					//if ()
 					timer.stop();
 				}
 		     }
@@ -67,7 +94,7 @@ public class CargaInicial extends JFrame {
 		panelCarga.setSize(720, 576);
 		setResizable(true);
 		
-		//Definicion del JLabel, con un tamaño igual que el jframe
+		//inicion del JLabel, con un tamaño igual que el jframe
 		background.setBounds(0,0,500,300);
 		
 		//Definicion de la progressbar, con un tamaño máximo de 60, su posiciñon y fuente
