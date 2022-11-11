@@ -3,6 +3,7 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -68,12 +69,34 @@ public class CargaInicial extends JFrame {
 					
 					panelCarga.setVisible(false);
 					Login login = new Login();
+					JButton loginButton = new JButton("Login");
+					login.add(loginButton);
+					
+					loginButton.setBounds(171, 209, 89, 23);
+					loginButton.setVisible(true);
+
 					login.setVisible(true);  //Panel principal, donde se va cargar todo el programa
 					dispose(); //Se limpia el Jframe
 					setUndecorated(false); 
 					setVisible(true);
 					setContentPane(login);
-					//if ()
+					
+					loginButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							setVisible(false);
+							MainPanel panelPrincipal = new MainPanel();
+							login.setVisible(false);
+							setContentPane(panelPrincipal);
+							panelPrincipal.setVisible(true);
+							dispose();
+							setSize(getMaximumSize());
+							setLocationRelativeTo(null);
+							setVisible(true);
+						}
+					});
+					
+					
+					
 					timer.stop();
 				}
 		     }

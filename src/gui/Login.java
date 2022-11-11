@@ -5,6 +5,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JPanel {
 	private JTextField usuarioField;
@@ -14,25 +19,31 @@ public class Login extends JPanel {
 		setLayout(null);
 		
 		usuarioField = new JTextField();
-		usuarioField.setBounds(233, 76, 86, 20);
+		usuarioField.setBounds(233, 123, 101, 20);
 		add(usuarioField);
 		usuarioField.setColumns(10);
 		
-		JButton loginButton = new JButton("Login");
-		loginButton.setBounds(172, 186, 89, 23);
-		add(loginButton);
+
 		
 		JLabel usuarioLabel = new JLabel("Usuario:");
-		usuarioLabel.setBounds(131, 79, 46, 14);
+		usuarioLabel.setBounds(102, 126, 76, 14);
 		add(usuarioLabel);
 		
 		JLabel passwordLabel = new JLabel("Contraseña:");
-		passwordLabel.setBounds(131, 123, 46, 14);
+		passwordLabel.setBounds(102, 164, 101, 20);
 		add(passwordLabel);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(233, 123, 86, 20);
+		passwordField.setBounds(233, 164, 101, 20);
 		add(passwordField);
+		
+		JLabel Titlelbl = new JLabel("Inicio de sesión");
+		Titlelbl.setFont(new Font("Consolas", Font.PLAIN, 32));
+		Titlelbl.setHorizontalAlignment(SwingConstants.CENTER);
+		Titlelbl.setIcon(new ImageIcon("img\\Mekanografia.png"));
+		Titlelbl.setBounds(42, 44, 369, 39);
+		add(Titlelbl);
+	
 		
 	}
 }
