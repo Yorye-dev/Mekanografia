@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Ficheros {
-	static public File estadisticasFile = new File("bbdd/estadisticas.txt");
-	static public File textoFile = new File("bbdd/texto.txt");
-	static public File usuariosFile = new File("bbdd/usuarios.txt");
+	static public File 	estadisticasFile	=	new File("bbdd/estadisticas.txt");
+	static public File	textoFile		 	= 	new File("bbdd/texto.txt");
+	static public File 	usuariosFile		= 	new File("bbdd/usuarios.txt");
 	
 	
 	static public boolean comprobarFicheros(File fichero1, File fichero2, File fichero3) {
@@ -52,7 +52,11 @@ public class Ficheros {
 			System.exit(0);
 		}
 		
+		
 		//return " ";
+	}
+	public static boolean comproCampos(String usuarioComp, String contraseñaComp) {
+		return false;
 	}
 	
 
