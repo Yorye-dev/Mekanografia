@@ -51,7 +51,7 @@ public class CargaInicial extends JFrame {
 		
 		panelCarga = new JPanel();	//Jpanel de carga, el cual tiene una progressBar y una "img de fondo (jlabel)" del mismo tamaño que el jpanel 500*300
 		
-		ImageIcon imgBack = new ImageIcon("img\\Img_background.png");//Imagen del icono
+		ImageIcon imgBack = new ImageIcon("img/Img_background.png");//Imagen del icono
 		JLabel background = null;
 		background = new JLabel("", imgBack, JLabel.CENTER);
 		JProgressBar progressBar = new JProgressBar();
@@ -103,7 +103,7 @@ public class CargaInicial extends JFrame {
 		});
 		
 		//Definición del Jframe (el tamaño "500*300", icono y centrado)
-		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\Mekanografia.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("img/Mekanografia.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true); //No se meustra el marco de Jframe
 		setBounds(100, 100, 500, 300);

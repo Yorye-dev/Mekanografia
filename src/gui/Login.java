@@ -23,8 +23,6 @@ public class Login extends JPanel {
 		add(usuarioField);
 		usuarioField.setColumns(10);
 		
-
-		
 		JLabel usuarioLabel = new JLabel("Usuario:");
 		usuarioLabel.setBounds(102, 126, 76, 14);
 		add(usuarioLabel);
@@ -40,7 +38,7 @@ public class Login extends JPanel {
 		JLabel Titlelbl = new JLabel("Inicio de sesión");
 		Titlelbl.setFont(new Font("Consolas", Font.PLAIN, 32));
 		Titlelbl.setHorizontalAlignment(SwingConstants.CENTER);
-		Titlelbl.setIcon(new ImageIcon("img\\Mekanografia.png"));
+		Titlelbl.setIcon(new ImageIcon("img/Mekanografia.png"));
 		Titlelbl.setBounds(42, 44, 369, 39);
 		add(Titlelbl);
 	
