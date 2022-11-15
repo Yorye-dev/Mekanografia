@@ -1,9 +1,11 @@
 package logic;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,6 +35,34 @@ public class Ficheros {
 		return existeFichero;
 	}
 	
+	public static void recibirUsuarios(File file,ArrayList<Usuarios> lista)
+	{
+		try 
+		{
+			FileReader     fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String         linea;
+			String[]       columna = new String[4];
+			
+			linea = br.readLine();
+			while (linea != null)
+			{
+				// Tratar la línea separado con ; 
+				columna = linea.split(";");
+				Usuarios  c = new Usuarios(columna[0], columna[1], columna[2], columna[3]);
+				lista.add(c);
+				linea = br.readLine();
+			}
+			// Cerrar el fichero
+			br.close();
+		} 
+		catch (IOException e) 
+		{
+			System.out.println(e.getMessage());
+		}
+		
+	}
+/*
 	public static void recibirIformacion(File fichero) {
 		try {
 			FileReader fEntrada = new FileReader(fichero);
@@ -51,11 +81,15 @@ public class Ficheros {
 			System.out.println("No existe el fichero");
 			System.exit(0);
 		}
-		
+	
 		
 		//return " ";
 	}
-	public static boolean comproCampos(String usuarioComp, String contraseñaComp) {
+	*/
+	
+	public static boolean comproCampos(String usuarioComp, String contraseñaComp, ArrayList<Usuarios> lsita) {
+		
+		
 		return false;
 	}
 	

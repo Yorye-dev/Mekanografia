@@ -6,11 +6,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.JProgressBar;
@@ -54,7 +57,7 @@ public class CargaInicial extends JFrame {
 		
 		panelCarga = new JPanel();	//Jpanel de carga, el cual tiene una progressBar y una "img de fondo (jlabel)" del mismo tamaño que el jpanel 500*300
 		
-		ImageIcon imgBack = new ImageIcon("img/Img_background.png");//Imagen del icono
+		ImageIcon imgBack = new ImageIcon("img\\Img_background.png");//Imagen del icono
 		JLabel background = null;
 		background = new JLabel("", imgBack, JLabel.CENTER);
 		JProgressBar progressBar = new JProgressBar();
@@ -78,7 +81,7 @@ public class CargaInicial extends JFrame {
 					loginButton.setBounds(171, 209, 89, 23);
 					loginButton.setVisible(true);
 
-					login.setVisible(true);  //Panel principal, donde se va cargar todo el programa
+					login.setVisible(true);//Panel principal, donde se va cargar todo el programa
 					dispose(); //Se limpia el Jframe
 					setUndecorated(false); 
 					setVisible(true);
@@ -86,15 +89,25 @@ public class CargaInicial extends JFrame {
 					
 					loginButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							String usuario = login.usuarioField.getText();
+							String contraseña = String.valueOf(login.passwordField.getPassword());
+							//String usuarioComp = listaUsuarios.get(2).getNombre();
+							
+							if(usuario.equals(listaUsuarios.get(0).getNombre())){
 							setVisible(false);
 							MainPanel panelPrincipal = new MainPanel();
 							login.setVisible(false);
 							setContentPane(panelPrincipal);
 							panelPrincipal.setVisible(true);
 							dispose();
-							setSize(getMaximumSize());
+							setExtendedState(JFrame.MAXIMIZED_BOTH);
 							setLocationRelativeTo(null);
 							setVisible(true);
+							}else {
+							System.out.println(listaUsuarios.get(0).getNombre());
+							System.out.println(usuario);
+							JOptionPane.showMessageDialog(null, "Login incorrecto", "ERROR", 0);
+							}
 						}
 					});
 					
@@ -106,8 +119,17 @@ public class CargaInicial extends JFrame {
 		});
 		
 		//Definición del Jframe (el tamaño "500*300", icono y centrado)
-		setIconImage(Toolkit.getDefaultToolkit().getImage("img/Mekanografia.png"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\Mekanografia.png"));
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		//Preguntar cerrar programa
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				int salir = JOptionPane.showConfirmDialog(null, "¿Desea salir?", "Close", JOptionPane.YES_NO_OPTION);	
+				if (salir == JOptionPane.YES_OPTION) {
+					System.exit(ABORT);
+				}
+			}
+		});
 		setUndecorated(true); //No se meustra el marco de Jframe
 		setBounds(100, 100, 500, 300);
 		setTitle("Mekanografia");
@@ -136,5 +158,8 @@ public class CargaInicial extends JFrame {
 		
 		//inicio del contador
 		timer.start();
+		
+		//Llena la array de usaurios, con todos sus geter 
+		logic.Ficheros.recibirUsuarios(logic.Ficheros.usuariosFile, listaUsuarios);
 	}
 }

@@ -12,9 +12,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Login extends JPanel {
-	private JTextField usuarioField;
-	private JPasswordField passwordField;
+	public JTextField usuarioField;
+	public JPasswordField passwordField;
+	/*public 	boolean estado;
 	
+	
+	public boolean isEstado() {
+		return estado;
+	}
+
+
+
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
+*/
+
+
 	public Login() {
 		setLayout(null);
 		
@@ -32,15 +48,18 @@ public class Login extends JPanel {
 		add(passwordLabel);
 		
 		passwordField = new JPasswordField();
+		passwordField.setEchoChar('#');
 		passwordField.setBounds(233, 164, 101, 20);
 		add(passwordField);
 		
 		JLabel Titlelbl = new JLabel("Inicio de sesión");
 		Titlelbl.setFont(new Font("Consolas", Font.PLAIN, 32));
 		Titlelbl.setHorizontalAlignment(SwingConstants.CENTER);
-		Titlelbl.setIcon(new ImageIcon("img/Mekanografia.png"));
+		Titlelbl.setIcon(new ImageIcon("img\\Mekanografia.png"));
 		Titlelbl.setBounds(42, 44, 369, 39);
 		add(Titlelbl);
+		
+		
 	
 		
 	}

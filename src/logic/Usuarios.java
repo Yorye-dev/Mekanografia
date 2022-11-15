@@ -4,7 +4,15 @@ public class Usuarios {
 	String id;
 	String nombre;
 	String contraseña;
+	String correo;
 	
+	
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
 	public String getId() {
 		return id;
 	}
@@ -24,11 +32,12 @@ public class Usuarios {
 		this.contraseña = contraseña;
 	}
 	
-	public Usuarios(String id, String nombre, String contraseña) {
+	public Usuarios(String id, String nombre, String contraseña, String correo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.contraseña = contraseña;
+		this.correo = correo;
 	}
 	
 	

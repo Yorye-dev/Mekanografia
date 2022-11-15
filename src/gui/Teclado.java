@@ -75,10 +75,6 @@ public class Teclado extends JPanel {
 		btnNewButton_8_2.setBounds(70, 124, 50, 50);
 		add(btnNewButton_8_2);
 		
-		JButton  = new JButton("J");
-		btnNewButton_8_3.setBounds(130, 124, 50, 50);
-		add(btnNewButton_8_3);
-		
 		JButton btnNewButton_8_4 = new JButton("K");
 		btnNewButton_8_4.setBounds(190, 124, 50, 50);
 		add(btnNewButton_8_4);
