@@ -47,7 +47,7 @@ public class Ficheros {
 			linea = br.readLine();
 			while (linea != null)
 			{
-				// Tratar la línea separado con ; 
+				// Guardar loc campos de la línea la línea separado con ; 
 				columna = linea.split(";");
 				Usuarios  c = new Usuarios(columna[0], columna[1], columna[2], columna[3]);
 				lista.add(c);
@@ -86,10 +86,16 @@ public class Ficheros {
 		//return " ";
 	}
 	*/
-	
-	public static boolean comproCampos(String usuarioComp, String contraseñaComp, ArrayList<Usuarios> lsita) {
-		
-		
+	//Compueba si la contraseñ y el usuaeio coinciden con alguno de los Usuarios
+	public static boolean comproCampos(String usuarioComp, String contraseñaComp, ArrayList<Usuarios> lista) {
+		if(usuarioComp.equals(lista.get(0).getNombre()) && contraseñaComp.equals(lista.get(0).getContraseña())){
+			return true;
+		}else if(usuarioComp.equals(lista.get(1).getNombre()) && contraseñaComp.equals(lista.get(1).getContraseña())){
+			return true;
+		}else if(usuarioComp.equals(lista.get(2).getNombre()) && contraseñaComp.equals(lista.get(2).getContraseña())){
+			return true;
+		}
+		JOptionPane.showMessageDialog(null, "Login incorrecto", "ERROR", 0);
 		return false;
 	}
 	

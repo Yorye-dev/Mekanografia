@@ -89,11 +89,10 @@ public class CargaInicial extends JFrame {
 					
 					loginButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							String usuario = login.usuarioField.getText();
-							String contraseña = String.valueOf(login.passwordField.getPassword());
+							
 							//String usuarioComp = listaUsuarios.get(2).getNombre();
 							
-							if(usuario.equals(listaUsuarios.get(0).getNombre())){
+							if(logic.Ficheros.comproCampos(login.usuarioField.getText(), String.valueOf(login.passwordField.getPassword()), listaUsuarios) == true){
 							setVisible(false);
 							MainPanel panelPrincipal = new MainPanel();
 							login.setVisible(false);
@@ -103,10 +102,6 @@ public class CargaInicial extends JFrame {
 							setExtendedState(JFrame.MAXIMIZED_BOTH);
 							setLocationRelativeTo(null);
 							setVisible(true);
-							}else {
-							System.out.println(listaUsuarios.get(0).getNombre());
-							System.out.println(usuario);
-							JOptionPane.showMessageDialog(null, "Login incorrecto", "ERROR", 0);
 							}
 						}
 					});
