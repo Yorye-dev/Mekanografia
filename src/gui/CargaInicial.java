@@ -19,26 +19,6 @@ import java.util.ArrayList;
 import javax.swing.JProgressBar;
 import javax.swing.Timer;
 
-/*
- * Jaime
- * 
- * Calse accederFile(){
- * 
- * private ArrayList<Usuario> listaUsuario;
- * 
- * public accederFile() private ArrayList<Usuario> listaUsuario){
- * 	this.listaUsuarios = listaUsuarios;
- * }
- * 
- * accederFicheros(){
- * 
- * listaUsuarios.add(neew Usuario (String.split(";")[0], String.split(";")[1], String.split(";")[2]));
- * }
- * 
- * }
- * 
- * */
-
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Color;
@@ -85,23 +65,23 @@ public class CargaInicial extends JFrame {
 					dispose(); //Se limpia el Jframe
 					setUndecorated(false); 
 					setVisible(true);
+					setResizable(false);
 					setContentPane(login);
 					
 					loginButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							
-							//String usuarioComp = listaUsuarios.get(2).getNombre();
-							
+							//Comprobar que el login sea correcto.
 							if(logic.Ficheros.comproCampos(login.usuarioField.getText(), String.valueOf(login.passwordField.getPassword()), listaUsuarios) == true){
 							setVisible(false);
-							MainPanel panelPrincipal = new MainPanel();
+							dispose();
+							setSize(getMaximumSize());
+							setBounds(0,0, getWidth(), getWidth());
+							setExtendedState(JFrame.MAXIMIZED_BOTH);
+							setLocationRelativeTo(null);
+							setVisible(true);MainPanel panelPrincipal = new MainPanel(CargaInicial.this);
 							login.setVisible(false);
 							setContentPane(panelPrincipal);
 							panelPrincipal.setVisible(true);
-							dispose();
-							setExtendedState(JFrame.MAXIMIZED_BOTH);
-							setLocationRelativeTo(null);
-							setVisible(true);
 							}
 						}
 					});

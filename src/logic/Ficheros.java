@@ -86,6 +86,7 @@ public class Ficheros {
 		//return " ";
 	}
 	*/
+	
 	//Compueba si la contraseñ y el usuaeio coinciden con alguno de los Usuarios
 	public static boolean comproCampos(String usuarioComp, String contraseñaComp, ArrayList<Usuarios> lista) {
 		if(usuarioComp.equals(lista.get(0).getNombre()) && contraseñaComp.equals(lista.get(0).getContraseña())){
@@ -99,5 +100,9 @@ public class Ficheros {
 		return false;
 	}
 	
+	//public static String recogerTexto(int difi, String texto) {
+		
+		
+	//} 
 
 }
