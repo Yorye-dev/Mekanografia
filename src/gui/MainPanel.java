@@ -18,6 +18,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
+import logic.Texto;
+
 public class MainPanel extends JPanel implements KeyListener {
 	
 	private JTextField txtTexto;
@@ -28,7 +30,9 @@ public class MainPanel extends JPanel implements KeyListener {
 	int fallos;
 	private final int MAXFALLOSFACIL = 5;
 	private final int MAXFALLOSDIFICIL = 3;
-	
+	String textoComp;
+	int i =-1;
+	PanelTextos textoPanel;
 	
 	public void KeyPressed() {
 		
@@ -60,6 +64,9 @@ public class MainPanel extends JPanel implements KeyListener {
 		centralPanel.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		PanelTextos textoPanel = new PanelTextos();
+		
+		textoComp =textoPanel.texto.getText();
+		System.out.print(" "+textoComp);
 		/*textoPanel.setBackground(Color.BLACK);
 		centralPanel.add(textoPanel);
 		textoPanel.setLayout(null);
@@ -80,11 +87,14 @@ public class MainPanel extends JPanel implements KeyListener {
 		menuIzqPanel.add(menuIzq);
 		centralPanel.add(textoPanel);
 		centralPanel.add(teclado);
+		
+		addKeyListener(this);
+		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		System.out.print(e.getKeyChar());
 		
 	}
 
@@ -99,4 +109,4 @@ public class MainPanel extends JPanel implements KeyListener {
 		// TODO Auto-generated method stub
 		
 	}
-}
+	}

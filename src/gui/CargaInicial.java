@@ -74,11 +74,11 @@ public class CargaInicial extends JFrame {
 							if(logic.Ficheros.comproCampos(login.usuarioField.getText(), String.valueOf(login.passwordField.getPassword()), listaUsuarios) == true){
 							setVisible(false);
 							dispose();
-							setSize(getMaximumSize());
-							setBounds(0,0, getWidth(), getWidth());
+							//setBounds(0,0, getWidth(), getWidth());
 							setExtendedState(JFrame.MAXIMIZED_BOTH);
 							setLocationRelativeTo(null);
-							setVisible(true);MainPanel panelPrincipal = new MainPanel(CargaInicial.this);
+							setVisible(true);
+							PanelPrincipal panelPrincipal = new PanelPrincipal(CargaInicial.this);
 							login.setVisible(false);
 							setContentPane(panelPrincipal);
 							panelPrincipal.setVisible(true);
