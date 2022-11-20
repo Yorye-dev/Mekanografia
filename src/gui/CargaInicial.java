@@ -42,15 +42,13 @@ public class CargaInicial extends JFrame {
 		background = new JLabel("", imgBack, JLabel.CENTER);
 		JProgressBar progressBar = new JProgressBar();
 		timer = new Timer (60, new ActionListener() {
-			public void actionPerformed(ActionEvent e)
-		    {
+			public void actionPerformed(ActionEvent e){
 		    	if (progressBar.getValue() < progressBar.getMaximum()) {
 		    		progressBar.setValue(progressBar.getValue()+1);
-		    		if (progressBar.getValue() == 80){
-		    			if (Ficheros.comprobarFicheros(Ficheros.estadisticasFile, Ficheros.textoFile, Ficheros.usuariosFile) == false) {
-		    				System.exit(ABORT);
+		    		if (progressBar.getValue() == 80 && Ficheros.comprobarFicheros(Ficheros.estadisticasFile, Ficheros.textoFile, Ficheros.usuariosFile) == false){ //compara ficheros al 80% y muestra un mensaje de error
+		    			
+		    			System.exit(ABORT);
 		    			}
-		    		}
 				}else if(progressBar.getValue() == progressBar.getMaximum()){
 					
 					panelCarga.setVisible(false);
@@ -74,20 +72,17 @@ public class CargaInicial extends JFrame {
 							if(logic.Ficheros.comproCampos(login.usuarioField.getText(), String.valueOf(login.passwordField.getPassword()), listaUsuarios) == true){
 							setVisible(false);
 							dispose();
-							//setBounds(0,0, getWidth(), getWidth());
-							setExtendedState(JFrame.MAXIMIZED_BOTH);
+							//setExtendedState(JFrame.MAXIMIZED_BOTH);
+							setMaximumSize(getMaximumSize());
 							setLocationRelativeTo(null);
 							setVisible(true);
-							PanelPrincipal panelPrincipal = new PanelPrincipal(CargaInicial.this);
+							PanelPrincipal panelPrincipal = new PanelPrincipal();
 							login.setVisible(false);
 							setContentPane(panelPrincipal);
 							panelPrincipal.setVisible(true);
 							}
 						}
 					});
-					
-					
-					
 					timer.stop();
 				}
 		     }
@@ -134,7 +129,7 @@ public class CargaInicial extends JFrame {
 		//inicio del contador
 		timer.start();
 		
-		//Llena la array de usaurios, con todos sus geter 
+		//Llena la array de usaurios, con todos sus get 
 		logic.Ficheros.recibirUsuarios(logic.Ficheros.usuariosFile, listaUsuarios);
 	}
 }
