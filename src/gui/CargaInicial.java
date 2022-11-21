@@ -29,8 +29,25 @@ import logic.Usuarios;
 public class CargaInicial extends JFrame {
 	Timer timer;
 	ArrayList<Usuarios> listaUsuarios = new ArrayList<Usuarios>();
+	JFrame frame = this;
 	
 	
+	public Timer getTimer() {
+		return timer;
+	}
+
+	public void setTimer(Timer timer) {
+		this.timer = timer;
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
 	private JPanel panelCarga;
 	
 	public CargaInicial() {
@@ -53,30 +70,26 @@ public class CargaInicial extends JFrame {
 					
 					panelCarga.setVisible(false);
 					Login login = new Login();
-					JButton loginButton = new JButton("Login");
-					login.add(loginButton);
 					
-					loginButton.setBounds(171, 209, 89, 23);
-					loginButton.setVisible(true);
 
-					login.setVisible(true);//Panel principal, donde se va cargar todo el programa
+					setVisible(true);//Panel principal, donde se va cargar todo el programa
 					dispose(); //Se limpia el Jframe
 					setUndecorated(false); 
 					setVisible(true);
 					setResizable(false);
 					setContentPane(login);
-					
-					loginButton.addActionListener(new ActionListener() {
+					login.getBotonLogin().addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							//Comprobar que el login sea correcto.
-							if(logic.Ficheros.comproCampos(login.usuarioField.getText(), String.valueOf(login.passwordField.getPassword()), listaUsuarios) == true){
+							int usrSelec = logic.Ficheros.comproCampos(login.usuarioField.getText(), String.valueOf(login.passwordField.getPassword()), listaUsuarios);
+							if(usrSelec < listaUsuarios.size()){
 							setVisible(false);
 							dispose();
-							//setExtendedState(JFrame.MAXIMIZED_BOTH);
-							setMaximumSize(getMaximumSize());
+							setExtendedState(JFrame.MAXIMIZED_BOTH);
+							setSize(getMaximumSize());
 							setLocationRelativeTo(null);
 							setVisible(true);
-							PanelPrincipal panelPrincipal = new PanelPrincipal();
+							PanelPrincipal panelPrincipal = new PanelPrincipal(listaUsuarios.get(usrSelec));
 							login.setVisible(false);
 							setContentPane(panelPrincipal);
 							panelPrincipal.setVisible(true);

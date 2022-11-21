@@ -3,31 +3,76 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
+import javax.swing.SwingConstants;
+
+import logic.Usuarios;
+
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PanelPrincipal extends JPanel {
-	SeleccionNiveles nivelEStadisticas;
 	boolean corriendo;
 	String texto;
+	Usuarios usuario;
 	
-	public PanelPrincipal() {
+	
+	
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+
+
+
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
+	}
+
+
+
+	public PanelPrincipal(Usuarios usuario) {
 		setSize(getMaximumSize());
+		setLayout(new BorderLayout(0, 0));
 		
-		setBackground(new Color(102, 0, 51));
-		setLayout(null);
+		JPanel TopMenu = new JPanel();
+		add(TopMenu, BorderLayout.NORTH);
+		TopMenu.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		//Crear la estancia de selector de niveles y tambien las estadísticas.
-		
-		nivelEStadisticas = new SeleccionNiveles();
-		nivelEStadisticas.setBounds(10, 11, 268, 1026);
-		add(nivelEStadisticas);
+		JPanel panel = new JPanel();
+		TopMenu.add(panel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(51, 255, 255));
-		panel_1.setBounds(290, 11, 123, 45);
-		add(panel_1);
+		FlowLayout flowLayout = (FlowLayout) panel_1.getLayout();
+		flowLayout.setAlignment(FlowLayout.RIGHT);
+		TopMenu.add(panel_1);
 		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBounds(290, 386, 753, 236);
-		add(panel_1_1);
+		JLabel lblNewLabel = new JLabel(usuario.getNombre());
+		lblNewLabel.setIcon(new ImageIcon("img\\Mekanografia.png"));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_1.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("LoginOut");
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+			}
+		});
+		panel_1.add(lblNewLabel_1);
+		
+		JPanel panelCentral = new JPanel();
+		add(panelCentral, BorderLayout.CENTER);
+		panelCentral.setLayout(null);
+		
+		SeleccionNiveles nivelStadisticas = new SeleccionNiveles(268, 1015);
+		panelCentral.add(nivelStadisticas);
+		
+		this.usuario = usuario;
+		
+		System.out.print(usuario.getNombre());
 	}
 }

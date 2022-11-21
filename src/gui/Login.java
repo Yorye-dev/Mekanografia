@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
@@ -14,22 +15,15 @@ import java.awt.event.ActionEvent;
 public class Login extends JPanel {
 	public JTextField usuarioField;
 	public JPasswordField passwordField;
-	/*public 	boolean estado;
+	public JButton botonLogin;
 	
-	
-	public boolean isEstado() {
-		return estado;
+	public JButton getBotonLogin() {
+		return botonLogin;
 	}
 
-
-
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setBotonLogin(JButton botonLogin) {
+		this.botonLogin = botonLogin;
 	}
-
-*/
-
 
 	public Login() {
 		setLayout(null);
@@ -60,7 +54,13 @@ public class Login extends JPanel {
 		add(Titlelbl);
 		
 		
-	
-		
+		JButton loginButton = new JButton("Login");
+		add(loginButton);
+		loginButton.setBounds(171, 209, 89, 23);
+		loginButton.setVisible(true);
+		add(loginButton);
+		this.botonLogin = loginButton;
 	}
+
+	
 }
