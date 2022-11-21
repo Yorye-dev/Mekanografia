@@ -88,7 +88,8 @@ public class Ficheros {
 	*/
 	
 	//Compueba si la contraseñ y el usuaeio coinciden con alguno de los Usuarios
-	public static int comproCampos(String usuarioComp, String contraseñaComp, ArrayList<Usuarios> lista) {
+	public static int comproCampos(String usuarioComp, String contraseñaComp, ArrayList<Usuarios> lista) { //refactorizar con bucles !!
+		
 		if(usuarioComp.equals(lista.get(0).getNombre()) && contraseñaComp.equals(lista.get(0).getContraseña())){
 			return 0;
 		}else if(usuarioComp.equals(lista.get(1).getNombre()) && contraseñaComp.equals(lista.get(1).getContraseña())){
@@ -99,10 +100,4 @@ public class Ficheros {
 		JOptionPane.showMessageDialog(null, "Login incorrecto", "ERROR", 0);
 		return lista.size();
 	}
-	
-	//public static String recogerTexto(int difi, String texto) {
-		
-		
-	//} 
-
 }

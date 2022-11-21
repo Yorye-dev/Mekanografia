@@ -14,6 +14,9 @@ import logic.Usuarios;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
+import java.awt.Panel;
+import javax.swing.JTextField;
 
 public class PanelPrincipal extends JPanel {
 	boolean corriendo;
@@ -38,31 +41,33 @@ public class PanelPrincipal extends JPanel {
 		setSize(getMaximumSize());
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel TopMenu = new JPanel();
-		add(TopMenu, BorderLayout.NORTH);
-		TopMenu.setLayout(new GridLayout(0, 2, 0, 0));
+		JPanel topMenu = new JPanel();
+		add(topMenu, BorderLayout.NORTH);
+		topMenu.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JPanel panel = new JPanel();
-		TopMenu.add(panel);
+		JPanel menuIzqpanel = new JPanel();
+		FlowLayout fl_menuIzqpanel = (FlowLayout) menuIzqpanel.getLayout();
+		fl_menuIzqpanel.setAlignment(FlowLayout.LEFT);
+		menuIzqpanel.setBackground(Color.GRAY);
+		topMenu.add(menuIzqpanel);
 		
-		JPanel panel_1 = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panel_1.getLayout();
-		flowLayout.setAlignment(FlowLayout.RIGHT);
-		TopMenu.add(panel_1);
+		JComboBox comboBox = new JComboBox();
+		menuIzqpanel.add(comboBox);
+		
+		JPanel menuDerPanel = new JPanel();
+		menuDerPanel.setBackground(Color.GRAY);
+		FlowLayout fl_menuDerPanel = (FlowLayout) menuDerPanel.getLayout();
+		fl_menuDerPanel.setAlignment(FlowLayout.RIGHT);
+		topMenu.add(menuDerPanel);
 		
 		JLabel lblNewLabel = new JLabel(usuario.getNombre());
 		lblNewLabel.setIcon(new ImageIcon("img\\Mekanografia.png"));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel_1.add(lblNewLabel);
+		menuDerPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("LoginOut");
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-			}
-		});
-		panel_1.add(lblNewLabel_1);
+		
+		menuDerPanel.add(lblNewLabel_1);
 		
 		JPanel panelCentral = new JPanel();
 		add(panelCentral, BorderLayout.CENTER);
@@ -71,8 +76,27 @@ public class PanelPrincipal extends JPanel {
 		SeleccionNiveles nivelStadisticas = new SeleccionNiveles(268, 1015);
 		panelCentral.add(nivelStadisticas);
 		
+		Panel textoSupPanel = new Panel();
+		textoSupPanel.setBounds(274, 10, 1640, 193);
+		panelCentral.add(textoSupPanel);
+		textoSupPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		Panel panel_2_1 = new Panel();
+		panel_2_1.setBounds(274, 209, 1640, 193);
+		panelCentral.add(panel_2_1);
+		
+		Panel panel_2_1_1 = new Panel();
+		panel_2_1_1.setBounds(274, 406, 1640, 193);
+		panelCentral.add(panel_2_1_1);
+		
 		this.usuario = usuario;
 		
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+			}
+		});
 		System.out.print(usuario.getNombre());
 	}
 }
