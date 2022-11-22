@@ -84,10 +84,9 @@ public class PanelPrincipal extends JPanel {
 		Panel panel_2_1 = new Panel();
 		panel_2_1.setBounds(274, 209, 1640, 193);
 		panelCentral.add(panel_2_1);
-		
-		Panel panel_2_1_1 = new Panel();
-		panel_2_1_1.setBounds(274, 406, 1640, 193);
-		panelCentral.add(panel_2_1_1);
+		Teclado teclado = new Teclado();
+		teclado.setBounds(278, 418, 1636, 429);
+		panelCentral.add(teclado);
 		
 		this.usuario = usuario;
 		

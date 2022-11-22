@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class SeleccionNiveles extends JPanel {
 
@@ -70,16 +71,16 @@ public class SeleccionNiveles extends JPanel {
 		add(panelNiveles);
 		panelNiveles.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(84, 11, 89, 23);
-		panelNiveles.add(btnNewButton);
+		JButton facilBtn = new JButton("New button");
+		facilBtn.setBounds(84, 52, 89, 23);
+		panelNiveles.add(facilBtn);
 		
 		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(84, 45, 89, 23);
+		btnNewButton_1.setBounds(84, 86, 89, 23);
 		panelNiveles.add(btnNewButton_1);
 		
 		JButton btnNewButton_1_1 = new JButton("New button");
-		btnNewButton_1_1.setBounds(84, 79, 89, 23);
+		btnNewButton_1_1.setBounds(84, 120, 89, 23);
 		panelNiveles.add(btnNewButton_1_1);
 
 	}
