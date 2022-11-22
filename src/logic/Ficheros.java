@@ -35,8 +35,7 @@ public class Ficheros {
 		return existeFichero;
 	}
 	
-	public static void recibirUsuarios(File file,ArrayList<Usuarios> lista)
-	{
+	public static void recibirUsuarios(File file,ArrayList<Usuarios> lista){
 		try 
 		{
 			FileReader     fr = new FileReader(file);
@@ -62,32 +61,33 @@ public class Ficheros {
 		}
 		
 	}
-/*
-	public static void recibirIformacion(File fichero) {
+	/*
+	public static String recibirIformacion(File fichero) {
+		String texto = "";
 		try {
 			FileReader fEntrada = new FileReader(fichero);
-			int c = fEntrada.read();
-			while (c!= -1) {
-				if(c==-1) {
-					
-				}
-				c = fEntrada.read();
-				char letra = (char)c;
-				System.out.print(letra);
-			}
 			
+			int letraInt = fEntrada.read();
+			while (letraInt!= -1) {
+				if(letraInt==-1) {
+					//listaTexto.add(texto);
+				}
+				//letraInt = fEntrada.read();
+				String letra = String.valueOf(letraInt);
+				texto = texto + letra;
+			}
+			fEntrada.close();
+			return texto;
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Falta el fichero usuario", "ERROR", 0);
 			System.out.println("No existe el fichero");
 			System.exit(0);
 		}
-	
-		
-		//return " ";
-	}
-	*/
+		return texto;
+	}*/
 	
 	//Compueba si la contraseñ y el usuaeio coinciden con alguno de los Usuarios
+	
 	public static int comproCampos(String usuarioComp, String contraseñaComp, ArrayList<Usuarios> lista) { //refactorizar con bucles !!
 		
 		if(usuarioComp.equals(lista.get(0).getNombre()) && contraseñaComp.equals(lista.get(0).getContraseña())){
@@ -99,5 +99,34 @@ public class Ficheros {
 		}
 		JOptionPane.showMessageDialog(null, "Login incorrecto", "ERROR", 0);
 		return lista.size();
+	}
+	
+	public static String recibirTextoDeFicheros(File fichero, int dificultad) { //Recojer el texto
+		String texto = "";
+		try 
+		{
+			FileReader     fr = new FileReader(fichero);
+			BufferedReader br = new BufferedReader(fr);
+			String         linea;
+			String[]       columna = new String[2];
+			
+			linea = br.readLine();
+			while (linea != null)
+			{
+				// Guardar loc campos de la línea la línea separado con ; 
+				columna = linea.split(";");
+				texto = columna[dificultad];
+				linea = br.readLine();
+			}
+			// Cerrar el fichero
+			br.close();
+			return texto;
+			
+		} 
+		catch (IOException e) 
+		{
+			System.out.println(e.getMessage());
+		}
+		return texto;
 	}
 }

@@ -63,11 +63,11 @@ public class CargaInicial extends JFrame {
 		    	if (progressBar.getValue() < progressBar.getMaximum()) {
 		    		progressBar.setValue(progressBar.getValue()+1);
 		    		if (progressBar.getValue() == 80 && Ficheros.comprobarFicheros(Ficheros.estadisticasFile, Ficheros.textoFile, Ficheros.usuariosFile) == false){ //compara ficheros al 80% y muestra un mensaje de error
-		    			
 		    			System.exit(ABORT);
 		    			}
 				}else if(progressBar.getValue() == progressBar.getMaximum()){
 					
+					//Todo correcto se inica el login
 					panelCarga.setVisible(false);
 					Login login = new Login();
 					
@@ -78,10 +78,12 @@ public class CargaInicial extends JFrame {
 					setVisible(true);
 					setResizable(false);
 					setContentPane(login);
+				
+					//Comprobación del logind
 					login.getBotonLogin().addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							//Comprobar que el login sea correcto.
-							int usrSelec = logic.Ficheros.comproCampos(login.usuarioField.getText(), String.valueOf(login.passwordField.getPassword()), listaUsuarios);
+							int usrSelec = logic.Ficheros.comproCampos(login.usuarioField.getText(), String.valueOf(login.passwordField.getPassword()), listaUsuarios); //Retorna un entero, que dice que posicion de arrat a inicado sesion
 							if(usrSelec < listaUsuarios.size()){
 							setVisible(false);
 							dispose();
