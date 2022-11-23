@@ -14,6 +14,7 @@ import logic.Ficheros;
 import logic.Usuarios;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,12 +27,46 @@ import java.awt.Panel;
 import javax.swing.JTextField;
 import java.awt.Font;
 
-public class PanelPrincipal extends JPanel  implements KeyListener {
+public class PanelPrincipal extends JPanel{
 	static boolean corriendo = false;
 	Usuarios usuario;
 	Timer cronometro;
 	static String texto;
 	private JTextField textoIntroducido;
+	private JTextField textField;
+	JButton qBtn =		 new JButton("Q");
+	JButton wBtn = 		new JButton("W");
+	JButton eBtn = 		new JButton("E");
+	JButton rBtn = 		new JButton("R");
+	JButton tBtn = 		new JButton("T");
+	JButton yBtn = 		new JButton("Y");
+	JButton uBtn = 		new JButton("U");
+	JButton iBtn = 		new JButton("I");
+	JButton oBtn = 		new JButton("O");
+	JButton pBtn =		new JButton("P");
+	JButton aBtn = 		new JButton("A");
+	JButton sBtn = 		new JButton("S");
+	JButton dBtn = 		new JButton("D");
+	JButton fBtn = 		new JButton("F");
+	JButton gBtn = 		new JButton("G");
+	JButton hBtn = 		new JButton("H");
+	JButton jBtn = 		new JButton("J");
+	JButton kBtn		= 	new JButton("K");
+	JButton lBtn 		= 	new JButton("L");
+	JButton ñBtn	  	= 	new JButton("Ñ");
+	JButton zBtn 		= 	new JButton("Z");
+	JButton xBtn 		=	new JButton("X");
+	JButton cBtn 		= 	new JButton("C");
+	JButton vBtn 		= 	new JButton("V");
+	JButton bBtn 		= 	new JButton("B");
+	JButton nBtn		= 	new JButton("N");
+	JButton mBtn 		= 	new JButton("M");
+	JButton comaBtn		= 	new JButton(",");
+	JButton puntoBtn	=	new JButton(".");	
+	JButton ÇBtn	 =		new JButton("Ç");
+	JButton spacioBtn = new JButton(" ");
+	JButton botones[] = {qBtn, wBtn, eBtn, rBtn, tBtn, yBtn, uBtn, iBtn, pBtn, aBtn, sBtn, dBtn, fBtn, gBtn, hBtn, jBtn, lBtn, ñBtn, zBtn, xBtn ,cBtn, vBtn, bBtn, nBtn, mBtn, ÇBtn, comaBtn, puntoBtn, spacioBtn};
+	
 	
 	public Usuarios getUsuario() {
 		return usuario;
@@ -46,10 +81,11 @@ public class PanelPrincipal extends JPanel  implements KeyListener {
 		JPanel topMenu = new JPanel();
 		JPanel menuIzqpanel = new JPanel();
 		JPanel panelCentral = new JPanel();
+		Teclado teclado = new Teclado(botones);
 		PanelTextos textoPanel = new PanelTextos();
 		
 		SeleccionNiveles nivelStadisticas = new SeleccionNiveles(268, 1015);
-		Teclado teclado = new Teclado();
+		
 		
 		FlowLayout fl_menuIzqpanel = (FlowLayout) menuIzqpanel.getLayout();
 		JComboBox comboBox = new JComboBox();
@@ -94,11 +130,13 @@ public class PanelPrincipal extends JPanel  implements KeyListener {
 		textoPanel.setLayout(null);
 		
 		teclado.setBounds(278, 502, 1636, 429);
-		textoPanel.texto.requestFocus();
-		addKeyListener(teclado);
+		
+		
 		panelCentral.add(teclado);
 		
 		this.usuario = usuario;
+		
+		//textoPanel.texto.addKeyListener(textoPanel);
 		
 		
 		//Evento login out
@@ -110,40 +148,50 @@ public class PanelPrincipal extends JPanel  implements KeyListener {
 		});
 		
 		//Eventos de btn de Niveles
-		
+		//Facil
 		nivelStadisticas.facilBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(corriendo == false){
 					textoPanel.setVisible(true);
 					textoPanel.texto.setText(Ficheros.recibirTextoDeFicheros(Ficheros.textoFile, 0));
+					textoPanel.texto.requestFocus();
 					texto = textoPanel.texto.getText();
 				}
 				
 			}
 		});
+		//Dificil
 		nivelStadisticas.dificilBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(corriendo == false){
 					textoPanel.setVisible(true);
+					nivelStadisticas.numVidasLbl.setText("5");
 					textoPanel.texto.setText(Ficheros.recibirTextoDeFicheros(Ficheros.textoFile, 1));
+					textoPanel.texto.requestFocus();
 				}
 			}
 		});
-		
-	}
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyPressed(KeyEvent e) {
-		System.out.print("a");
-		
-	}
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	
+		textoPanel.texto.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				//System.out.print("a");				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				System.out.print("a");
+				botones[0].setBackground(Color.red);
+				//textoPanel.
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 }

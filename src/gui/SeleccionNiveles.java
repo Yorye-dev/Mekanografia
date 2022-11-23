@@ -17,40 +17,10 @@ public class SeleccionNiveles extends JPanel {
 	JButton facilBtn		;
 	JButton estadisticasBtn ;
 	JButton reintentarBtn	;
-
-	public JButton getDificilBtn() {
-		return dificilBtn;
-	}
-
-	public void setDificilBtn(JButton dificilBtn) {
-		this.dificilBtn = dificilBtn;
-	}
-
-	public JButton getFacilBtn() {
-		return facilBtn;
-	}
-
-	public void setFacilBtn(JButton facilBtn) {
-		this.facilBtn = facilBtn;
-	}
-
-	public JButton getEstadisticasBtn() {
-		return estadisticasBtn;
-	}
-
-	public void setEstadisticasBtn(JButton estadisticasBtn) {
-		this.estadisticasBtn = estadisticasBtn;
-	}
-
-	public JButton getReintentarBtn() {
-		return reintentarBtn;
-	}
-
-	public void setReintentarBtn(JButton reintentarBtn) {
-		this.reintentarBtn = reintentarBtn;
-	}
-
-	public SeleccionNiveles(int anchi, int alto) {
+	JLabel numVidasLbl 		;
+	JLabel tiempLbl 		;
+	
+ SeleccionNiveles(int anchi, int alto) {
 		setSize(268, 1015);
 		setLayout(new GridLayout(2, 0, 0, 0));
 		
@@ -58,7 +28,7 @@ public class SeleccionNiveles extends JPanel {
 		add(panelInfo);
 		panelInfo.setLayout(null);
 		
-		JLabel tiempLbl = new JLabel("00:00");
+		tiempLbl = new JLabel("00:00");
 		tiempLbl.setFont(new Font("Consolas", Font.BOLD, 35));
 		tiempLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		tiempLbl.setBounds(12, 47, 244, 47);
@@ -84,7 +54,7 @@ public class SeleccionNiveles extends JPanel {
 		tiempoTituloLbl.setBounds(10, 11, 244, 39);
 		panelInfo.add(tiempoTituloLbl);
 		
-		JLabel numVidasLbl = new JLabel("4");
+		numVidasLbl = new JLabel("");
 		numVidasLbl.setHorizontalAlignment(SwingConstants.LEFT);
 		numVidasLbl.setFont(new Font("Consolas", Font.PLAIN, 24));
 		numVidasLbl.setBounds(134, 214, 122, 39);

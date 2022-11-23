@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 
-public class Teclado extends JPanel implements KeyListener{
+public class Teclado extends JPanel{
+	/*
+}
 	int tecladoCorriendo;
 	
 	JButton qBtn = new JButton("Q");
@@ -51,23 +53,31 @@ public class Teclado extends JPanel implements KeyListener{
 	
 	JButton botones[] = {qBtn, wBtn, eBtn, rBtn, tBtn, yBtn, uBtn, iBtn, pBtn, aBtn, sBtn, dBtn, fBtn, gBtn, hBtn, jBtn, lBtn, ñBtn, zBtn, xBtn ,cBtn, vBtn, bBtn, nBtn, mBtn, ÇBtn, comaBtn, puntoBtn, spacioBtn};
 	
-	Teclado() {
+	public JButton[] getBotones() {
+		return botones;
+	}
+
+	public void setBotones(JButton[] botones) {
+		this.botones = botones;
+	}*/
+
+	Teclado(JButton botones[]) {
 	setSize(1640, 429);
 	setBackground(Color.PINK);
 		setLayout(null);
 		
-		qBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		qBtn.setBounds(0, 0, 164, 107);
-		add(qBtn);
+		botones[0].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[0].setBounds(0, 0, 164, 107);
+		add(botones[0]);
 		
-		wBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		wBtn.setBounds(164, 0, 164, 107);
-		add(wBtn);
+		botones[1].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[1].setBounds(164, 0, 164, 107);
+		add(botones[1]);
 		
-		eBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		eBtn.setBounds(328, 0, 164, 107);
-		add(eBtn);
-		
+		botones[2].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[2].setBounds(328, 0, 164, 107);
+		add(botones[2]);
+		/*
 		rBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
 		rBtn.setBounds(492, 0, 164, 107);
 		add(rBtn);
@@ -185,10 +195,6 @@ public class Teclado extends JPanel implements KeyListener{
 		
 		comaBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
 		comaBtn.setBounds(1148, 214, 164, 107);
-		comaBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		add(comaBtn);
 		
 		
@@ -203,7 +209,7 @@ public class Teclado extends JPanel implements KeyListener{
 		
 				spacioBtn.setBounds(328, 321, 984, 108);
 		add(spacioBtn);
-		
+		*/
 		JLabel imgLabel = new JLabel("");
 		imgLabel.setIcon(new ImageIcon("img/tecladoEmbellecedores.png"));
 		imgLabel.setBounds(1312, 321, 328, 107);
@@ -213,21 +219,8 @@ public class Teclado extends JPanel implements KeyListener{
 		imgLabel02.setIcon(new ImageIcon("img/tecladoEmbellecedores.png"));
 		imgLabel02.setBounds(0, 321, 328, 107);
 		add(imgLabel02);
-	}
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
-	}
-	@Override
-	public void keyPressed(KeyEvent e) {
-		System.out.print("a");
-		
-	}
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+		//this.botones = botones;
 	}
 
 }
