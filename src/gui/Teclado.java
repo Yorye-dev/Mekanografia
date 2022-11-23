@@ -5,12 +5,14 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 
-public class Teclado extends JPanel {
+public class Teclado extends JPanel implements KeyListener{
 	int tecladoCorriendo;
 	
 	JButton qBtn = new JButton("Q");
@@ -212,4 +214,20 @@ public class Teclado extends JPanel {
 		imgLabel02.setBounds(0, 321, 328, 107);
 		add(imgLabel02);
 	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		System.out.print("a");
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -17,6 +17,8 @@ import javax.swing.ImageIcon;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
@@ -24,13 +26,12 @@ import java.awt.Panel;
 import javax.swing.JTextField;
 import java.awt.Font;
 
-public class PanelPrincipal extends JPanel {
+public class PanelPrincipal extends JPanel  implements KeyListener {
 	static boolean corriendo = false;
 	Usuarios usuario;
 	Timer cronometro;
 	static String texto;
-	
-	
+	private JTextField textoIntroducido;
 	
 	public Usuarios getUsuario() {
 		return usuario;
@@ -86,18 +87,19 @@ public class PanelPrincipal extends JPanel {
 		
 		panelCentral.add(nivelStadisticas);
 		
-		textoPanel.setBounds(21, 0, 1609, 318);
-		textoPanel.texto.setFont(new Font("Consolas", Font.PLAIN, 30));
-		textoPanel.texto.setBounds(27, 0, 1603, 378);
 		textoPanel.setBounds(278, 10, 1636, 378);
 		textoPanel.setVisible(false);
+	
 		panelCentral.add(textoPanel);
 		textoPanel.setLayout(null);
 		
 		teclado.setBounds(278, 502, 1636, 429);
+		textoPanel.texto.requestFocus();
+		addKeyListener(teclado);
 		panelCentral.add(teclado);
 		
 		this.usuario = usuario;
+		
 		
 		//Evento login out
 		loginOutLbl.addMouseListener(new MouseAdapter() {
@@ -127,6 +129,21 @@ public class PanelPrincipal extends JPanel {
 				}
 			}
 		});
-		System.out.print(usuario.getNombre());
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		System.out.print("a");
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

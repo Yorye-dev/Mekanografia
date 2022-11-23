@@ -89,6 +89,7 @@ public class CargaInicial extends JFrame {
 							dispose();
 							setExtendedState(JFrame.MAXIMIZED_BOTH);
 							setSize(getMaximumSize());
+							requestFocus();
 							setLocationRelativeTo(null);
 							setVisible(true);
 							PanelPrincipal panelPrincipal = new PanelPrincipal(listaUsuarios.get(usrSelec));
