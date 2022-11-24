@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Highlighter;
 import javax.swing.text.Utilities;
 
 import logic.Ficheros;
@@ -32,6 +34,7 @@ public class PanelPrincipal extends JPanel{
 	private int posicionString;
 	private int teclaPulsada;
 	private int vidas;
+	private int contadorPulsaciones;
 	static boolean corriendo = false;
 	Usuarios usuario;
 	Timer cronometro;
@@ -139,6 +142,7 @@ public class PanelPrincipal extends JPanel{
 		
 		
 		panelCentral.add(teclado);
+		Highlighter subrayador = textoPanel.texto.getHighlighter();
 		
 		this.usuario = usuario;
 		
@@ -165,22 +169,40 @@ public class PanelPrincipal extends JPanel{
 					textoPanel.texto.requestFocus();
 					texto = textoPanel.texto.getText();
 					//alogic.Utilities.recorrerCadena(textoPanel.texto.getText(), botones);
+					contadorPulsaciones = 0;
 					posicionString = 0;
+					cronometro = new Timer(300, new ActionListener() {
+						//Mision del timer
+						
+						@Override
+						public void actionPerformed(ActionEvent x) {
+							// TODO Auto-generated method stub
+							};
+					});
 				}
 				
 			}
 		});
+		
 		//Dificil
 		nivelStadisticas.dificilBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(corriendo == false){
 					textoPanel.setVisible(true);
-					vidas = 5;
+					vidas = 3;
 					nivelStadisticas.numVidasLbl.setText(String.valueOf(vidas));
 					textoPanel.texto.setText(Ficheros.recibirTextoDeFicheros(Ficheros.textoFile, 1));
 					textoPanel.texto.requestFocus();
-					//logic.Utilities.recorrerCadena(textoPanel.texto.getText(), botones);
+					texto = textoPanel.texto.getText();
+					contadorPulsaciones = 0;
 					posicionString = 0;
+					cronometro = new Timer(300, new ActionListener() {
+						//Mision del timer
+						@Override
+						public void actionPerformed(ActionEvent x) {
+							// TODO Auto-generated method stub
+							};
+					});
 				}
 			}
 		});
@@ -189,28 +211,66 @@ public class PanelPrincipal extends JPanel{
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				botones[teclaPulsada].setBackground(Color.white);
+				
+				
+				
+				
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
+				
+				botones[teclaPulsada].setBackground(Color.white);
 				teclaPulsada = logic.Utilities.teclaPulsada(e.getKeyChar(), botones);
-				if(teclaPulsada== logic.Utilities.letraEnLaarray(texto,botones,posicionString)) {
+				if (teclaPulsada == logic.Utilities.letraEnLaarray(texto,botones,0) && corriendo == false){
+					corriendo = true;
+					nivelStadisticas.facilBtn.setEnabled(false);
+					nivelStadisticas.dificilBtn.setEnabled(false);
 					botones[teclaPulsada].setBackground(Color.green);
-				}else {
-					botones[teclaPulsada].setBackground(Color.red);
-					vidas--;
-					nivelStadisticas.numVidasLbl.setText(String.valueOf(vidas));
+					try {
+						subrayador.addHighlight(posicionString, posicionString +1, Rotuladores.rotuVerde);
+					} catch (BadLocationException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
-				logic.Utilities.letraEnLaarray(texto,botones,posicionString);
-				posicionString ++;
-				//System.out.print(e.getKeyChar());
+				
+				//Este solo se inica si el juego está en marcha
+				
+				if(corriendo == true && vidas >0 && posicionString <= texto.length()) {
+					if(teclaPulsada== logic.Utilities.letraEnLaarray(texto,botones,posicionString)) {
+						
+						try {
+							botones[teclaPulsada].setBackground(Color.green);	
+							subrayador.addHighlight(posicionString, posicionString +1, Rotuladores.rotuVerde);
+							posicionString ++;
+						} catch (BadLocationException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}else {
+						
+						try {
+							botones[teclaPulsada].setBackground(Color.red);
+							subrayador.addHighlight(posicionString, posicionString +1, Rotuladores.rotuRojo);
+							vidas--;
+							nivelStadisticas.numVidasLbl.setText(String.valueOf(vidas));
+							posicionString ++;
+						} catch (BadLocationException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						contadorPulsaciones++;
+					}	
+					//logic.Utilities.letraEnLaarray(texto,botones,posicionString);
+				}else {
+					//corriendo = false;
+				}
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
+				botones[teclaPulsada].setBackground(Color.white);
 			}
 		});
 	}
