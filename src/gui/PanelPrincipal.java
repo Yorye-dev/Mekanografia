@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+import javax.swing.text.Utilities;
 
 import logic.Ficheros;
 import logic.Usuarios;
@@ -28,29 +29,34 @@ import javax.swing.JTextField;
 import java.awt.Font;
 
 public class PanelPrincipal extends JPanel{
+	private int posicionString;
+	private int teclaPulsada;
+	private int vidas;
 	static boolean corriendo = false;
 	Usuarios usuario;
 	Timer cronometro;
 	static String texto;
 	private JTextField textoIntroducido;
 	private JTextField textField;
-	JButton qBtn =		 new JButton("Q");
-	JButton wBtn = 		new JButton("W");
-	JButton eBtn = 		new JButton("E");
-	JButton rBtn = 		new JButton("R");
-	JButton tBtn = 		new JButton("T");
-	JButton yBtn = 		new JButton("Y");
-	JButton uBtn = 		new JButton("U");
-	JButton iBtn = 		new JButton("I");
-	JButton oBtn = 		new JButton("O");
-	JButton pBtn =		new JButton("P");
-	JButton aBtn = 		new JButton("A");
-	JButton sBtn = 		new JButton("S");
-	JButton dBtn = 		new JButton("D");
-	JButton fBtn = 		new JButton("F");
-	JButton gBtn = 		new JButton("G");
-	JButton hBtn = 		new JButton("H");
-	JButton jBtn = 		new JButton("J");
+	
+	//Botnoes del teclado
+	JButton qBtn 		=	new JButton("Q");
+	JButton wBtn 		= 	new JButton("W");
+	JButton eBtn 		= 	new JButton("E");
+	JButton rBtn 		= 	new JButton("R");
+	JButton tBtn 		= 	new JButton("T");
+	JButton yBtn 		= 	new JButton("Y");
+	JButton uBtn 		= 	new JButton("U");
+	JButton iBtn 		= 	new JButton("I");
+	JButton oBtn 		= 	new JButton("O");
+	JButton pBtn 		=	new JButton("P");
+	JButton aBtn 		= 	new JButton("A");
+	JButton sBtn 		= 	new JButton("S");
+	JButton dBtn		=	new JButton("D");
+	JButton fBtn 		= 	new JButton("F");
+	JButton gBtn 		=	new JButton("G");
+	JButton hBtn 		= 	new JButton("H");
+	JButton jBtn	 	= 	new JButton("J");
 	JButton kBtn		= 	new JButton("K");
 	JButton lBtn 		= 	new JButton("L");
 	JButton ñBtn	  	= 	new JButton("Ñ");
@@ -63,9 +69,9 @@ public class PanelPrincipal extends JPanel{
 	JButton mBtn 		= 	new JButton("M");
 	JButton comaBtn		= 	new JButton(",");
 	JButton puntoBtn	=	new JButton(".");	
-	JButton ÇBtn	 =		new JButton("Ç");
-	JButton spacioBtn = new JButton(" ");
-	JButton botones[] = {qBtn, wBtn, eBtn, rBtn, tBtn, yBtn, uBtn, iBtn, pBtn, aBtn, sBtn, dBtn, fBtn, gBtn, hBtn, jBtn, lBtn, ñBtn, zBtn, xBtn ,cBtn, vBtn, bBtn, nBtn, mBtn, ÇBtn, comaBtn, puntoBtn, spacioBtn};
+	JButton ÇBtn		=	new JButton("Ç");
+	JButton spacioBtn	= 	new JButton(" ");
+	JButton botones[] = {qBtn, wBtn, eBtn, rBtn, tBtn, yBtn, uBtn, iBtn, oBtn, pBtn, aBtn, sBtn, dBtn, fBtn, gBtn, hBtn, jBtn, kBtn, lBtn, ñBtn, zBtn, xBtn ,cBtn, vBtn, bBtn, nBtn, mBtn, ÇBtn, comaBtn, puntoBtn, spacioBtn};
 	
 	
 	public Usuarios getUsuario() {
@@ -153,9 +159,13 @@ public class PanelPrincipal extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(corriendo == false){
 					textoPanel.setVisible(true);
+					vidas = 5;
+					nivelStadisticas.numVidasLbl.setText(String.valueOf(vidas));
 					textoPanel.texto.setText(Ficheros.recibirTextoDeFicheros(Ficheros.textoFile, 0));
 					textoPanel.texto.requestFocus();
 					texto = textoPanel.texto.getText();
+					//alogic.Utilities.recorrerCadena(textoPanel.texto.getText(), botones);
+					posicionString = 0;
 				}
 				
 			}
@@ -165,9 +175,12 @@ public class PanelPrincipal extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(corriendo == false){
 					textoPanel.setVisible(true);
-					nivelStadisticas.numVidasLbl.setText("5");
+					vidas = 5;
+					nivelStadisticas.numVidasLbl.setText(String.valueOf(vidas));
 					textoPanel.texto.setText(Ficheros.recibirTextoDeFicheros(Ficheros.textoFile, 1));
 					textoPanel.texto.requestFocus();
+					//logic.Utilities.recorrerCadena(textoPanel.texto.getText(), botones);
+					posicionString = 0;
 				}
 			}
 		});
@@ -176,15 +189,22 @@ public class PanelPrincipal extends JPanel{
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				//System.out.print("a");				
+				botones[teclaPulsada].setBackground(Color.white);
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				System.out.print("a");
-				botones[0].setBackground(Color.red);
-				//textoPanel.
-				
+				teclaPulsada = logic.Utilities.teclaPulsada(e.getKeyChar(), botones);
+				if(teclaPulsada== logic.Utilities.letraEnLaarray(texto,botones,posicionString)) {
+					botones[teclaPulsada].setBackground(Color.green);
+				}else {
+					botones[teclaPulsada].setBackground(Color.red);
+					vidas--;
+					nivelStadisticas.numVidasLbl.setText(String.valueOf(vidas));
+				}
+				logic.Utilities.letraEnLaarray(texto,botones,posicionString);
+				posicionString ++;
+				//System.out.print(e.getKeyChar());
 			}
 			
 			@Override

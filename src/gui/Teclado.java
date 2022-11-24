@@ -68,148 +68,156 @@ public class Teclado extends JPanel{
 		
 		botones[0].setFont(new Font("Consolas", Font.PLAIN, 28));
 		botones[0].setBounds(0, 0, 164, 107);
+		botones[0].setBackground(Color.white);
 		add(botones[0]);
 		
 		botones[1].setFont(new Font("Consolas", Font.PLAIN, 28));
 		botones[1].setBounds(164, 0, 164, 107);
+		botones[1].setBackground(Color.white);
 		add(botones[1]);
 		
 		botones[2].setFont(new Font("Consolas", Font.PLAIN, 28));
 		botones[2].setBounds(328, 0, 164, 107);
+		botones[2].setBackground(Color.white);
 		add(botones[2]);
-		/*
-		rBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		rBtn.setBounds(492, 0, 164, 107);
-		add(rBtn);
 		
-		tBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		tBtn.setBounds(656, 0, 164, 107);
-		add(tBtn);
+		botones[3].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[3].setBounds(492, 0, 164, 107);
+		botones[3].setBackground(Color.white);
+		add(botones[3]);
 		
-		yBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		yBtn.setBounds(820, 0, 164, 107);
-		add(yBtn);
+		botones[4].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[4].setBounds(656, 0, 164, 107);
+		botones[4].setBackground(Color.white);
+		add(botones[4]);
 		
-		
-		uBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		uBtn.setBounds(984, 0, 164, 107);
-		add(uBtn);
-		
-		iBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		iBtn.setBounds(1148, 0, 164, 107);
-		add(iBtn);
+		botones[5].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[5].setBounds(820, 0, 164, 107);
+		botones[5].setBackground(Color.white);
+		add(botones[5]);
 		
 		
-		oBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		oBtn.setBounds(1312, 0, 164, 107);
-		add(oBtn);
+		botones[6].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[6].setBounds(984, 0, 164, 107);
+		botones[6].setBackground(Color.white);
+		add(botones[6]);
+		
+		botones[7].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[7].setBounds(1148, 0, 164, 107);
+		botones[7].setBackground(Color.white);
+		add(botones[7]);
 		
 		
-		pBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		pBtn.setBounds(1476, 0, 164, 107);
-		add(pBtn);
+		botones[8].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[8].setBounds(1312, 0, 164, 107);
+		botones[8].setBackground(Color.white);
+		add(botones[8]);
 		
 		
-		aBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		aBtn.setBounds(0, 107, 164, 107);
-		add(aBtn);
-		
-		sBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		sBtn.setBounds(164, 107, 164, 107);
-		add(sBtn);
+		botones[9].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[9].setBounds(1476, 0, 164, 107);
+		add(botones[9]);
 		
 		
-		dBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		dBtn.setBounds(328, 107, 164, 107);
-		add(dBtn);
+		botones[10].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[10].setBounds(0, 107, 164, 107);
+		add(botones[10]);
+		
+		botones[11].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[11].setBounds(164, 107, 164, 107);
+		add(botones[11]);
 		
 		
-		fBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		fBtn.setBounds(492, 107, 164, 107);
-		add(fBtn);
+		botones[12].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[12].setBounds(328, 107, 164, 107);
+		add(botones[12]);
 		
 		
-		gBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		gBtn.setBounds(656, 107, 164, 107);
-		add(gBtn);
+		botones[13].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[13].setBounds(492, 107, 164, 107);
+		add(botones[13]);
 		
 		
-		hBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		hBtn.setBounds(820, 107, 164, 107);
-		add(hBtn);
-		
-		jBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		jBtn.setBounds(984, 107, 164, 107);
-		add(jBtn);
+		botones[14].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[14].setBounds(656, 107, 164, 107);
+		add(botones[14]);
 		
 		
-		kBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		kBtn.setBounds(1148, 107, 164, 107);
-		add(kBtn);
+		botones[15].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[15].setBounds(820, 107, 164, 107);
+		add(botones[15]);
+		
+		botones[16].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[16].setBounds(984, 107, 164, 107);
+		add(botones[16]);
 		
 		
-		lBtn.setFont(new Font("Consolas", Font.PLAIN, 24));
-		lBtn.setBounds(1312, 107, 164, 107);
-		add(lBtn);
+		botones[17].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[17].setBounds(1148, 107, 164, 107);
+		add(botones[17]);
 		
 		
-		ñBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		ñBtn.setBounds(1476, 107, 164, 107);
-		add(ñBtn);
+		botones[18].setFont(new Font("Consolas", Font.PLAIN, 24));
+		botones[18].setBounds(1312, 107, 164, 107);
+		add(botones[18]);
 		
 		
-		zBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		zBtn.setBounds(0, 214, 164, 107);
-		add(zBtn);
+		botones[19].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[19].setBounds(1476, 107, 164, 107);
+		add(botones[19]);
 		
 		
-		xBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		xBtn.setBounds(164, 214, 164, 107);
-		add(xBtn);
+		botones[20].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[20].setBounds(0, 214, 164, 107);
+		add(botones[20]);
 		
 		
-		cBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		cBtn.setBounds(328, 214, 164, 107);
-		add(cBtn);
+		botones[21].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[21].setBounds(164, 214, 164, 107);
+		add(botones[21]);
 		
 		
-		vBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		vBtn.setBounds(492, 214, 164, 107);
-		add(vBtn);
+		botones[22].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[22].setBounds(328, 214, 164, 107);
+		add(botones[22]);
 		
 		
-		bBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		bBtn.setBounds(656, 214, 164, 107);
-		add(bBtn);
+		botones[23].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[23].setBounds(492, 214, 164, 107);
+		add(botones[23]);
 		
 		
-		nBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		nBtn.setBounds(820, 214, 164, 107);
-		add(nBtn);
+		botones[24].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[24].setBounds(656, 214, 164, 107);
+		add(botones[24]);
 		
 		
-		mBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		mBtn.setBounds(984, 214, 164, 107);
-		add(mBtn);
+		botones[25].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[25].setBounds(820, 214, 164, 107);
+		add(botones[25]);
 		
 		
-		comaBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		comaBtn.setBounds(1148, 214, 164, 107);
-		add(comaBtn);
+		botones[26].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[26].setBounds(984, 214, 164, 107);
+		add(botones[26]);
 		
 		
-		puntoBtn.setFont(new Font("Consolas", Font.PLAIN, 45));
-		puntoBtn.setBounds(1312, 214, 164, 107);
-		add(puntoBtn);
+		botones[27].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[27].setBounds(1148, 214, 164, 107);
+		add(botones[27]);
 		
 		
-		ÇBtn.setFont(new Font("Consolas", Font.PLAIN, 28));
-		ÇBtn.setBounds(1476, 214, 164, 107);
-		add(ÇBtn);
+		botones[28].setFont(new Font("Consolas", Font.PLAIN, 45));
+		botones[28].setBounds(1312, 214, 164, 107);
+		add(botones[28]);
 		
-				spacioBtn.setBounds(328, 321, 984, 108);
-		add(spacioBtn);
-		*/
+		botones[29].setFont(new Font("Consolas", Font.PLAIN, 28));
+		botones[29].setBounds(1476, 214, 164, 107);
+		add(botones[29]);
+		
+		botones[30].setBounds(328, 321, 984, 108);
+		add(botones[30]);
+		
 		JLabel imgLabel = new JLabel("");
 		imgLabel.setIcon(new ImageIcon("img/tecladoEmbellecedores.png"));
 		imgLabel.setBounds(1312, 321, 328, 107);
