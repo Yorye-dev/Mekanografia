@@ -13,12 +13,13 @@ import javax.swing.ImageIcon;
 
 public class SeleccionNiveles extends JPanel {
 	public static  int corriendo;
+	JLabel pulsacionesPorminuto;
 	JButton dificilBtn		;
 	JButton facilBtn		;
 	JButton estadisticasBtn ;
 	JButton reintentarBtn	;
-	JLabel numVidasLbl 		;
-	JLabel tiempLbl 		;
+	JLabel 	numVidasLbl 	;
+	JLabel 	tiempLbl 		;
 	
  SeleccionNiveles(int anchi, int alto) {
 		setSize(268, 1015);
@@ -60,11 +61,11 @@ public class SeleccionNiveles extends JPanel {
 		numVidasLbl.setBounds(134, 214, 122, 39);
 		panelInfo.add(numVidasLbl);
 		
-		JLabel vidasLbl_1_1 = new JLabel("--");
-		vidasLbl_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		vidasLbl_1_1.setFont(new Font("Consolas", Font.PLAIN, 24));
-		vidasLbl_1_1.setBounds(134, 280, 122, 39);
-		panelInfo.add(vidasLbl_1_1);
+		pulsacionesPorminuto = new JLabel("--");
+		pulsacionesPorminuto .setHorizontalAlignment(SwingConstants.LEFT);
+		pulsacionesPorminuto .setFont(new Font("Consolas", Font.PLAIN, 24));
+		pulsacionesPorminuto .setBounds(134, 280, 122, 39);
+		panelInfo.add(pulsacionesPorminuto);
 		
 		JButton reintentarBtn = new JButton("Reintentar");
 		reintentarBtn.setEnabled(false);
@@ -100,6 +101,21 @@ public class SeleccionNiveles extends JPanel {
 		this.dificilBtn = dificilBtn;
 		this.facilBtn = facilBtn;
 		this.estadisticasBtn = estadisticasBtn;
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("D:\\JAF_javaWorkspace\\Mekanografia\\img\\Mekanografia-64x64.png"));
+		lblNewLabel.setBounds(10, 122, 64, 64);
+		panelNiveles.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("D:\\JAF_javaWorkspace\\Mekanografia\\img\\ComandramonSprite.png"));
+		lblNewLabel_1.setBounds(84, 122, 64, 64);
+		panelNiveles.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("");
+		lblNewLabel_1_1.setIcon(new ImageIcon("D:\\JAF_javaWorkspace\\Mekanografia\\img\\ComandramonSprite.png"));
+		lblNewLabel_1_1.setBounds(129, 122, 64, 64);
+		panelNiveles.add(lblNewLabel_1_1);
 		this.reintentarBtn = reintentarBtn;
 		
 		

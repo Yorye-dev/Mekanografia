@@ -12,6 +12,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -96,9 +98,28 @@ public class CargaInicial extends JFrame {
 							login.setVisible(false);
 							setContentPane(panelPrincipal);
 							panelPrincipal.setVisible(true);
+							
+							panelPrincipal.loginOutLbl.addMouseListener(new MouseAdapter() {
+								@Override
+								public void mouseClicked(MouseEvent e) {
+									if(PanelPrincipal.corriendo == false) {
+									setBounds(100, 100, 500, 300);
+									setVisible(true);//Panel principal, donde se va cargar todo el programa
+									dispose(); //Se limpia el Jframe
+									setUndecorated(false); 
+									setVisible(true);
+									setResizable(false);
+									login.setVisible(true);
+									setContentPane(login);
+									}
+									
+								}
+							});
+							
 							}
 						}
 					});
+					
 					timer.stop();
 				}
 		     }

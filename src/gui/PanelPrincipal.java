@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
@@ -16,6 +18,7 @@ import javax.swing.text.Utilities;
 import logic.Ficheros;
 import logic.Usuarios;
 
+import javax.naming.directory.AttributeModificationException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -31,16 +34,26 @@ import javax.swing.JTextField;
 import java.awt.Font;
 
 public class PanelPrincipal extends JPanel{
+	
+	
+	
+	JLabel loginOutLbl;
+	private String difivultad;
 	private int posicionString;
 	private int teclaPulsada;
 	private int vidas;
+	private int pulsacionesPorMin;
 	private int contadorPulsaciones;
+	private int tiempo;
 	static boolean corriendo = false;
 	Usuarios usuario;
 	Timer cronometro;
 	static String texto;
 	private JTextField textoIntroducido;
 	private JTextField textField;
+	
+	SeleccionNiveles nivelStadisticas;
+	PanelTextos textoPanel;
 	
 	//Botnoes del teclado
 	JButton qBtn 		=	new JButton("Q");
@@ -74,7 +87,8 @@ public class PanelPrincipal extends JPanel{
 	JButton puntoBtn	=	new JButton(".");	
 	JButton ÇBtn		=	new JButton("Ç");
 	JButton spacioBtn	= 	new JButton(" ");
-	JButton botones[] = {qBtn, wBtn, eBtn, rBtn, tBtn, yBtn, uBtn, iBtn, oBtn, pBtn, aBtn, sBtn, dBtn, fBtn, gBtn, hBtn, jBtn, kBtn, lBtn, ñBtn, zBtn, xBtn ,cBtn, vBtn, bBtn, nBtn, mBtn, ÇBtn, comaBtn, puntoBtn, spacioBtn};
+	JButton botnoesNoAdmitidos	= 	new JButton(" ");
+	JButton botones[] = {qBtn, wBtn, eBtn, rBtn, tBtn, yBtn, uBtn, iBtn, oBtn, pBtn, aBtn, sBtn, dBtn, fBtn, gBtn, hBtn, jBtn, kBtn, lBtn, ñBtn, zBtn, xBtn ,cBtn, vBtn, bBtn, nBtn, mBtn, ÇBtn, comaBtn, puntoBtn, spacioBtn, botnoesNoAdmitidos};
 	
 	
 	public Usuarios getUsuario() {
@@ -91,16 +105,18 @@ public class PanelPrincipal extends JPanel{
 		JPanel menuIzqpanel = new JPanel();
 		JPanel panelCentral = new JPanel();
 		Teclado teclado = new Teclado(botones);
-		PanelTextos textoPanel = new PanelTextos();
+		textoPanel = new PanelTextos();
+		textoPanel.texto.setBounds(0, 0, 1630, 378);
 		
-		SeleccionNiveles nivelStadisticas = new SeleccionNiveles(268, 1015);
+		nivelStadisticas = new SeleccionNiveles(268, 1015);
+		nivelStadisticas.setBounds(0, 0, 248, 1015);
 		
 		
 		FlowLayout fl_menuIzqpanel = (FlowLayout) menuIzqpanel.getLayout();
 		JComboBox comboBox = new JComboBox();
 		JPanel menuDerPanel = new JPanel();
 		JLabel lblNewLabel = new JLabel(usuario.getNombre());
-		JLabel loginOutLbl = new JLabel("LoginOut");
+		loginOutLbl = new JLabel("LoginOut");
 		
 		
 		setSize(getMaximumSize());
@@ -138,7 +154,7 @@ public class PanelPrincipal extends JPanel{
 		panelCentral.add(textoPanel);
 		textoPanel.setLayout(null);
 		
-		teclado.setBounds(278, 502, 1636, 429);
+		teclado.setBounds(267, 501, 1640, 429);
 		
 		
 		panelCentral.add(teclado);
@@ -150,12 +166,7 @@ public class PanelPrincipal extends JPanel{
 		
 		
 		//Evento login out
-		loginOutLbl.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setVisible(false);
-			}
-		});
+		
 		
 		//Eventos de btn de Niveles
 		//Facil
@@ -163,70 +174,95 @@ public class PanelPrincipal extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(corriendo == false){
 					textoPanel.setVisible(true);
+					tiempo = 60;
 					vidas = 5;
 					nivelStadisticas.numVidasLbl.setText(String.valueOf(vidas));
+					nivelStadisticas.tiempLbl.setText(String.valueOf(tiempo)+"ms");
 					textoPanel.texto.setText(Ficheros.recibirTextoDeFicheros(Ficheros.textoFile, 0));
 					textoPanel.texto.requestFocus();
 					texto = textoPanel.texto.getText();
-					//alogic.Utilities.recorrerCadena(textoPanel.texto.getText(), botones);
 					contadorPulsaciones = 0;
 					posicionString = 0;
-					cronometro = new Timer(300, new ActionListener() {
+					cronometro = new Timer(1000, new ActionListener() {
+						
 						//Mision del timer
 						
 						@Override
 						public void actionPerformed(ActionEvent x) {
-							// TODO Auto-generated method stub
-							};
-					});
+							tiempo --;
+							nivelStadisticas.tiempLbl.setText(String.valueOf(tiempo)+"ms");
+							if (tiempo == 0) {
+								JOptionPane.showMessageDialog(null, "Se necesita practicar... El mundo digital te necesita", "ERROR", 0);
+								reset();
+								}
+							}
+						});
+					}
 				}
-				
-			}
-		});
+			});
 		
 		//Dificil
 		nivelStadisticas.dificilBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(corriendo == false){
 					textoPanel.setVisible(true);
+					tiempo =180;
 					vidas = 3;
 					nivelStadisticas.numVidasLbl.setText(String.valueOf(vidas));
+					nivelStadisticas.tiempLbl.setText(String.valueOf(tiempo)+"ms");
 					textoPanel.texto.setText(Ficheros.recibirTextoDeFicheros(Ficheros.textoFile, 1));
 					textoPanel.texto.requestFocus();
 					texto = textoPanel.texto.getText();
 					contadorPulsaciones = 0;
 					posicionString = 0;
-					cronometro = new Timer(300, new ActionListener() {
+					cronometro = new Timer(1000, new ActionListener() {
 						//Mision del timer
 						@Override
-						public void actionPerformed(ActionEvent x) {
-							// TODO Auto-generated method stub
-							};
-					});
+						public void actionPerformed(ActionEvent x) {	
+							tiempo --;
+							nivelStadisticas.tiempLbl.setText(String.valueOf(tiempo)+"ms");
+							if (tiempo == 0) {
+								JOptionPane.showMessageDialog(null, "Se necesita practicar... El mundo digital te necesita", "ERROR", 0);
+								reset();
+								}
+							}
+						});
 				}
 			}
 		});
-	
+		//Se agregan los eventos
 		textoPanel.texto.addKeyListener(new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
 				
-				
-				
-				
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
+				botones[teclaPulsada].setBackground(Color.white);
+				if (vidas == 0){
+					JOptionPane.showMessageDialog(null, "Se necesita practicar... El mundo digital te necesita", "ERROR", 0);
+					reset();
+				}else if ( posicionString == texto.length()){
+					pulsacionesPorMin = contadorPulsaciones*tiempo/60;
+					nivelStadisticas.pulsacionesPorminuto.setText(String.valueOf(pulsacionesPorMin));
+					reset();
+				}
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
 				botones[teclaPulsada].setBackground(Color.white);
 				teclaPulsada = logic.Utilities.teclaPulsada(e.getKeyChar(), botones);
 				if (teclaPulsada == logic.Utilities.letraEnLaarray(texto,botones,0) && corriendo == false){
+					//primeraPulsación = true;
 					corriendo = true;
 					nivelStadisticas.facilBtn.setEnabled(false);
 					nivelStadisticas.dificilBtn.setEnabled(false);
 					botones[teclaPulsada].setBackground(Color.green);
+					cronometro.start();
+					contadorPulsaciones ++;
 					try {
 						subrayador.addHighlight(posicionString, posicionString +1, Rotuladores.rotuVerde);
 					} catch (BadLocationException e1) {
@@ -234,44 +270,60 @@ public class PanelPrincipal extends JPanel{
 						e1.printStackTrace();
 					}
 				}
-				
-				//Este solo se inica si el juego está en marcha
-				
-				if(corriendo == true && vidas >0 && posicionString <= texto.length()) {
-					if(teclaPulsada== logic.Utilities.letraEnLaarray(texto,botones,posicionString)) {
+				if(corriendo == true && vidas > 0 && posicionString < texto.length()) {
+					if(teclaPulsada == logic.Utilities.letraEnLaarray(texto,botones,posicionString)) {
 						
 						try {
 							botones[teclaPulsada].setBackground(Color.green);	
 							subrayador.addHighlight(posicionString, posicionString +1, Rotuladores.rotuVerde);
+							//if (posicionString == texto.length()) {
+//Para no auemntar el contador, ya que el número máximo de posición tiene que ser el tamaño de la cadena de texto -1 por el fin de cadena
+						//	}else {
 							posicionString ++;
+						//	}
+							contadorPulsaciones ++;
 						} catch (BadLocationException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-					}else {
-						
+					}else if(teclaPulsada == botones.length-1) {
+						System.out.print("Caracter no válido");
+					}else{
 						try {
 							botones[teclaPulsada].setBackground(Color.red);
 							subrayador.addHighlight(posicionString, posicionString +1, Rotuladores.rotuRojo);
 							vidas--;
 							nivelStadisticas.numVidasLbl.setText(String.valueOf(vidas));
-							posicionString ++;
+							//if (posicionString == texto.length()) {
+								
+							//}else {
+								posicionString ++;
+								contadorPulsaciones ++;
+							//}
+							
 						} catch (BadLocationException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
+							}
 						}
-						contadorPulsaciones++;
 					}	
 					//logic.Utilities.letraEnLaarray(texto,botones,posicionString);
-				}else {
-					//corriendo = false;
-				}
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				botones[teclaPulsada].setBackground(Color.white);
+				
+				System.out.println(texto.length());
+				System.out.println(posicionString);
+				System.out.println("...........");
+				
 			}
 		});
+	}
+	
+	void reset() {
+		corriendo = false;
+		posicionString = 0;
+		tiempo = 0;
+		nivelStadisticas.facilBtn.setEnabled(true);
+		nivelStadisticas.dificilBtn.setEnabled(true);
+		textoPanel.texto.setText(null);
+		cronometro.stop();
 	}
 }
